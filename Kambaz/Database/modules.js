@@ -1,6 +1,6 @@
 export default [
     {
-      "_id": "4550-m1",
+      "_id": "M101",
       "course": "4550",
       "name": "Week 1",
       "lessons": [
@@ -26,7 +26,7 @@ export default [
       ]
     },
     {
-      "_id": "4550-m2",
+      "_id": "M102",
       "course": "4550",
       "name": "Week 2",
       "lessons": [
@@ -35,7 +35,7 @@ export default [
       ]
     },
     {
-      "_id": "4550-m3",
+      "_id": "M103",
       "course": "4550",
       "name": "Week 3",
       "lessons": [
@@ -44,88 +44,70 @@ export default [
       ]
     },
     {
-      "_id": "4400-m1",
-      "course": "4400",
+        "_id": "M201",
+        "course": "3540",
+        "name": "Week 1",
+        "lessons": [
+          { "_id": "L401", "name": "Lecture — Introduction to Game Design and Development" },
+          { "_id": "L402", "name": "LEARNING OBJECTIVES" }
+        ]
+      },
+      {
+        "_id": "M301",
+        "course": "1113",
+        "name": "Week 1",
+        "lessons": [
+          { "_id": "L501", "name": "Lecture — Fundamentals of Game Programming" },
+          { "_id": "L502", "name": "LEARNING OBJECTIVES" }
+        ]
+      },      
+    {
+      "_id": "M401",
+      "course": "1280",
       "name": "Week 1",
       "lessons": [
-        { "_id": "L401", "name": "Grammars" },
-        { "_id": "L402", "name": "Parsing" }
+        { "_id": "L601", "name": "Lecture — Introduction to French Film" },
+        { "_id": "L602", "name": "LEARNING OBJECTIVES — Understanding Cinematic Movements" },
+        { "_id": "L603", "name": "SLIDES — Poetic Realism and Early French Cinema" }
       ]
     },
     {
-      "_id": "4400-m2",
-      "course": "4400",
-      "name": "Week 2",
-      "lessons": [
-        { "_id": "L403", "name": "Operational Semantics" }
-      ]
-    },
-    {
-      "_id": "4400-m3",
-      "course": "4400",
-      "name": "Week 3",
-      "lessons": [
-        { "_id": "L404", "name": "Type Systems" }
-      ]
-    },
-    {
-      "_id": "4700-m1",
-      "course": "4700",
+      "_id": "M501",
+      "course": "3302",
       "name": "Week 1",
       "lessons": [
-        { "_id": "L701", "name": "OSI Model" },
-        { "_id": "L702", "name": "TCP/IP" }
+        { "_id": "L701", "name": "Lecture — Introduction to Advanced Writing in the Disciplines" },
+        { "_id": "L702", "name": "LEARNING OBJECTIVES — Analyzing Academic Genres" },
+        { "_id": "L703", "name": "SLIDES — Structuring Research-Based Writing" }
       ]
     },
     {
-      "_id": "4700-m2",
-      "course": "4700",
-      "name": "Week 2",
-      "lessons": [
-        { "_id": "L703", "name": "Ethernet" }
-      ]
-    },
-    {
-      "_id": "4700-m3",
-      "course": "4700",
-      "name": "Week 3",
-      "lessons": [
-        { "_id": "L704", "name": "IP, Routing" }
-      ]
-    },
-    {
-      "_id": "3650-m1",
-      "course": "3650",
+      "_id": "M601",
+      "course": "3000",
       "name": "Week 1",
       "lessons": [
-        { "_id": "L651", "name": "Processes and Threads" },
-        { "_id": "L652", "name": "Memory Hierarchy Basics" }
+        { "_id": "L801", "name": "Lecture — Data Base" },
+        { "_id": "L802", "name": "LEARNING OBJECTIVES" }
       ]
     },
     {
-      "_id": "2800-m1",
+      "_id": "M701",
       "course": "2800",
       "name": "Week 1",
       "lessons": [
-        { "_id": "L281", "name": "Propositional Logic" },
-        { "_id": "L282", "name": "Truth Tables" }
+        { "_id": "L901", "name": "Lecture — Introduction to Logic and Computation" },
+        { "_id": "L902", "name": "LEARNING OBJECTIVES" },
+        { "_id": "L903", "name": "SLIDES" }
       ]
     },
     {
-      "_id": "1800-m1",
-      "course": "1800",
+      "_id": "M801",
+      "course": "2310",
       "name": "Week 1",
       "lessons": [
-        { "_id": "L181", "name": "Sets and Functions" }
-      ]
-    },
-    {
-      "_id": "1210-m1",
-      "course": "1210",
-      "name": "Week 1",
-      "lessons": [
-        { "_id": "L121", "name": "Career Goals & Planning" }
+        { "_id": "L1001", "name": "Lecture - EECE" },
+        { "_id": "L1002", "name": "LEARNING OBJECTIVES" },
+        { "_id": "L1003", "name": "SLIDES" }
       ]
     }
-  ]
-  
+  ];

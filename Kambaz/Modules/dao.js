@@ -23,6 +23,8 @@ function deleteModule(moduleId) {
   const { modules } = db;
   db.modules = modules.filter((module) => module._id !== moduleId);
 }
+
+
  return {
    findModulesForCourse,
    createModule,
@@ -30,3 +32,4 @@ function deleteModule(moduleId) {
    updateModule
  };
 }
+

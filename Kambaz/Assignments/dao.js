@@ -2,13 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function AssignmentsDao(db) {
   function findAssignmentsForCourse(courseId) {
-    const { assignments } = db;
-    return assignments.filter((a) => a.course === courseId);
-  }
-
-  function findAssignmentById(assignmentId) {
-    const { assignments } = db;
-    return assignments.find((a) => a._id === assignmentId);
+    return db.assignments.filter((a) => a.course === courseId);
   }
 
   function createAssignment(assignment) {
@@ -17,25 +11,19 @@ export default function AssignmentsDao(db) {
     return newAssignment;
   }
 
-  function updateAssignment(assignmentId, assignmentUpdates) {
-    const { assignments } = db;
-    const assignment = assignments.find((a) => a._id === assignmentId);
-    if (!assignment) {
-      return null;
-    }
-    Object.assign(assignment, assignmentUpdates);
-    return assignment;
+  function updateAssignment(assignmentId, updates) {
+    db.assignments = db.assignments.map((a) =>
+      a._id === assignmentId ? { ...a, ...updates } : a
+    );
+    return db.assignments.find((a) => a._id === assignmentId);
   }
 
   function deleteAssignment(assignmentId) {
-    const { assignments } = db;
-    db.assignments = assignments.filter((a) => a._id !== assignmentId);
-    return { status: "ok" };
+    db.assignments = db.assignments.filter((a) => a._id !== assignmentId);
   }
 
   return {
     findAssignmentsForCourse,
-    findAssignmentById,
     createAssignment,
     updateAssignment,
     deleteAssignment,
