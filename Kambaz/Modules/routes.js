@@ -1,5 +1,4 @@
-// Kambaz/Modules/routes.js
-import ModulesDao from "./dao.js";
+import ModulesDao from "../Modules/dao.js";
 
 export default function ModulesRoutes(app, db) {
   const dao = ModulesDao(db);
@@ -16,22 +15,21 @@ export default function ModulesRoutes(app, db) {
     const newModule = dao.createModule(module);
     res.json(newModule);
   };
-
+  
   const deleteModule = (req, res) => {
-    const { moduleId } = req.params;
-    const status = dao.deleteModule(moduleId);
-    res.send(status);
-  };
+  const { moduleId } = req.params;
+  const status = dao.deleteModule(moduleId);
+  res.send(status);
+}
 
-  const updateModule = (req, res) => {
-    const { moduleId } = req.params;
-    const moduleUpdates = req.body;
-    const status = dao.updateModule(moduleId, moduleUpdates);
-    res.send(status);
-  };
-
+const updateModule = async (req, res) => {
+  const { moduleId } = req.params;
+  const moduleUpdates = req.body;
+  const status = await dao.updateModule(moduleId, moduleUpdates);
+  res.send(status);
+}
+  app.put("/api/modules/:moduleId", updateModule);
+  app.delete("/api/modules/:moduleId", deleteModule);
   app.get("/api/courses/:courseId/modules", findModulesForCourse);
   app.post("/api/courses/:courseId/modules", createModuleForCourse);
-  app.delete("/api/modules/:moduleId", deleteModule);
-  app.put("/api/modules/:moduleId", updateModule);
 }
