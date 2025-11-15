@@ -1,27 +1,11 @@
 import UsersDao from "./dao.js";
 
 export default function UserRoutes(app, db) {
-  const dao = UsersDao(db);
-
-  const createUser = (req, res) => {
-    const newUser = dao.createUser(req.body);
-    res.json(newUser);
-  };
-
-  const findAllUsers = (req, res) => {
-    const users = dao.findAllUsers();
-    res.json(users);
-  };
-
-  const findUserById = (req, res) => {
-    const userId = req.params.userId;
-    const user = dao.findUserById(userId);
-    if (!user) {
-      res.sendStatus(404);
-      return;
-    }
-    res.json(user);
-  };
+ const dao = UsersDao(db);
+  const createUser = (req, res) => { };
+  const deleteUser = (req, res) => { };
+  const findAllUsers = (req, res) => { };
+  const findUserById = (req, res) => { };
 
   const updateUser = (req, res) => {
     const userId = req.params.userId;
@@ -32,22 +16,16 @@ export default function UserRoutes(app, db) {
     res.json(currentUser);
   };
 
-  const deleteUser = (req, res) => {
-    const userId = req.params.userId;
-    dao.deleteUser(userId);
-    res.sendStatus(200);
-  };
-
   const signup = (req, res) => {
-    const user = dao.findUserByUsername(req.body.username);
-    if (user) {
-      res.status(400).json({ message: "Username already in use" });
-      return;
-    }
-    const currentUser = dao.createUser(req.body);
+  const user = dao.findUserByUsername(req.body.username);
+  if (user) {
+    res.status(400).json({ message: "Username already in use" });
+    return;
+  }
+   const currentUser = dao.createUser(req.body);
     req.session["currentUser"] = currentUser;
     res.json(currentUser);
-  };
+};
 
   const signin = (req, res) => {
     const { username, password } = req.body;
@@ -60,7 +38,11 @@ export default function UserRoutes(app, db) {
     }
   };
 
-  const profile = (req, res) => {
+    const signout = (req, res) => {
+    req.session.destroy();
+    res.sendStatus(200);
+  };
+  const profile = async (req, res) => {
     const currentUser = req.session["currentUser"];
     if (!currentUser) {
       res.sendStatus(401);
@@ -68,12 +50,6 @@ export default function UserRoutes(app, db) {
     }
     res.json(currentUser);
   };
-
-  const signout = (req, res) => {
-    req.session.destroy(() => {});
-    res.sendStatus(200);
-  };
-
   app.post("/api/users", createUser);
   app.get("/api/users", findAllUsers);
   app.get("/api/users/:userId", findUserById);
