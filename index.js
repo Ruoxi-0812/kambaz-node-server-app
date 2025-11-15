@@ -15,33 +15,29 @@ import EnrollmentsRoutes from "./Kambaz/Enrollments/routes.js";
 import PeopleRoutes from "./Kambaz/People/routes.js";
 import "dotenv/config";
 import session from "express-session";
-
 const app = express();
-
-app.set("trust proxy", 1);
-
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:3000",
     credentials: true,
+    origin: process.env.CLIENT_URL || "http://localhost:3000",
   })
 );
-
-const isProduction = process.env.SERVER_ENV === "production";
-
 const sessionOptions = {
   secret: process.env.SESSION_SECRET || "kambaz",
   resave: false,
   saveUninitialized: false,
-  cookie: {
-    sameSite: isProduction ? "none" : "lax",
-    secure: isProduction,
-  },
 };
 
+if (process.env.SERVER_ENV === "production") {
+  sessionOptions.proxy = true;
+  sessionOptions.cookie = {
+    sameSite: "none",
+    secure: true,
+    domain: process.env.SERVER_URL,
+  };
+}
+
 app.use(session(sessionOptions));
-
-
 app.use(express.json());
 Lab5(app);
 PathParameters(app);
