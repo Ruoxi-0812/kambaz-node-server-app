@@ -11,26 +11,24 @@ export default function PeopleRoutes(app, db) {
 
   const createUserForCourse = (req, res) => {
     const { courseId } = req.params;
-    const user = req.body;
-    const newUser = dao.createUserForCourse(courseId, user);
+    const newUser = dao.createUserForCourse(courseId, req.body);
     res.json(newUser);
   };
 
   const updateUserInCourse = (req, res) => {
     const { courseId, userId } = req.params;
-    const updates = req.body;
-    const updated = dao.updateUserInCourse(courseId, userId, updates);
+    const updated = dao.updateUserInCourse(courseId, userId, req.body);
     if (!updated) {
       res.sendStatus(404);
     } else {
       res.json(updated);
     }
   };
-  
+
   const deleteUserFromCourse = (req, res) => {
     const { courseId, userId } = req.params;
-    const status = dao.deleteUserFromCourse(courseId, userId);
-    res.json(status);
+    dao.deleteUserFromCourse(courseId, userId);
+    res.sendStatus(200);
   };
 
   app.get("/api/courses/:courseId/people", findPeopleForCourse);
