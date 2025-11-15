@@ -15,6 +15,7 @@ export default function ModulesRoutes(app, db) {
     const newModule = dao.createModule(module);
     res.json(newModule);
   };
+  
   const deleteModule = (req, res) => {
   const { moduleId } = req.params;
   const status = dao.deleteModule(moduleId);
