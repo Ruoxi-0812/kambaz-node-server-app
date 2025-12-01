@@ -1,25 +1,24 @@
 import EnrollmentsDao from "./dao.js";
+import model from "./model.js";
 
 export default function EnrollmentsRoutes(app, db) {
   const dao = EnrollmentsDao(db);
 
-  app.get("/api/users/:uid/enrollments", (req, res) => {
+  app.get("/api/users/:uid/enrollments", async (req, res) => {
     const { uid } = req.params;
-    const mine = db.enrollments.filter((e) => e.user === uid);
+    const mine = await model.find({ user: uid });
     res.json(mine);
   });
 
-  app.post("/api/enrollments", (req, res) => {
+  app.post("/api/enrollments", async (req, res) => {
     const { user, course } = req.body;
-    const created = dao.enrollUserInCourse(user, course);
+    const created = await dao.enrollUserInCourse(user, course);
     res.json(created);
   });
-
-  app.delete("/api/users/:uid/enrollments/:cid", (req, res) => {
+  
+  app.delete("/api/users/:uid/enrollments/:cid", async (req, res) => {
     const { uid, cid } = req.params;
-    db.enrollments = db.enrollments.filter(
-      (e) => !(e.user === uid && e.course === cid)
-    );
+    await dao.unenrollUserFromCourse(uid, cid);
     res.sendStatus(200);
   });
 }
